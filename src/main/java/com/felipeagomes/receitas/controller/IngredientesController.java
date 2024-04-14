@@ -21,4 +21,6 @@ public class IngredientesController {
 	private List<Ingredientes> findAll(@RequestHeader long usuarioId) {
 		return repository.findAllByUsuarioId(usuarioId);
 	}
+	
+	
 }
