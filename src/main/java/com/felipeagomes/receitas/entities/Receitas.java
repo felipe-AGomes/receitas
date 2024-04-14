@@ -2,6 +2,8 @@ package com.felipeagomes.receitas.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,7 +47,12 @@ public class Receitas {
 	public List<Ingredientes> getIngredientes() {
 		return ingredientes;
 	}
-
+	
+	@JsonIgnore
+	public Usuarios getUsuario() {
+		return usuario;
+	}
+	
 	public void setUsuario(Usuarios usuario) {
 		this.usuario = usuario;
 	}
@@ -82,7 +89,11 @@ public class Receitas {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
+		if (id == null) {
+			return;
+		}
+		
 		this.id = id;
 	}
 

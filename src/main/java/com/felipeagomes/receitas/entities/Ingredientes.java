@@ -12,6 +12,10 @@ public class Ingredientes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@ManyToOne
+	private Usuarios usuario;
+	
 	private String descricao;
 
 	public long getId() {

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,27 +19,33 @@ import com.felipeagomes.receitas.entities.Usuarios;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping("/")
 public class UsuariosController {
 	@Autowired
 	private UsuariosRepository repository;
 
-	@GetMapping(value = "/secure/adm/usuarios")
+	@GetMapping("/secure/adm/usuarios")
 	public List<Usuarios> findAll() {
 		return repository.findAll();
 	}
-
-	@PostMapping(value = "/register")
+	
+	@PostMapping("/register")
 	public Usuarios createUsuario(@RequestBody Usuarios usuario) {
-		return repository.save(usuario);
+		Usuarios hasUsuario = repository.findByEmail(usuario.getEmail());
+		
+		if (hasUsuario == null) {
+			return repository.save(usuario);
+		}
+		
+		return null;
 	}
-
-	@DeleteMapping(value = "/secure/usuarios")
-	public void deleteUsuario(@RequestHeader Long id) {
+	
+	@DeleteMapping("/secure/usuarios")
+	public void deleteUsuario(@RequestHeader long id) {
 		repository.deleteById(id);
 	}
 
-	@PutMapping(value = "/secure/usuarios")
+	@PutMapping("/secure/usuarios")
 	public void updateUsuario(@RequestBody Usuarios usuario) {
 		Optional<Usuarios> user = repository.findById(usuario.getId());
 		

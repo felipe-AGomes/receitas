@@ -13,55 +13,58 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.felipeagomes.receitas.entities.Receitas;
+import com.felipeagomes.receitas.entities.Categorias;
 import com.felipeagomes.receitas.entities.Usuarios;
-import com.felipeagomes.receitas.repositories.ReceitasRepository;
+import com.felipeagomes.receitas.repositories.CategoriasRepository;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
 
 @RestController
-@RequestMapping("/secure/receitas")
-public class ReceitasController {
+@RequestMapping("/secure/categorias")
+public class CategoriasController {
 	@Autowired
-	private ReceitasRepository receitasRepository;
+	private CategoriasRepository categoriasRepository;
 	@Autowired
 	private UsuariosRepository usuariosRepository;
-
+	
+	
 	@GetMapping
-	public List<Receitas> findAll(@RequestHeader long usuarioId) {
-		return receitasRepository.findByUsuarioId(usuarioId);
+	public List<Categorias> findAll(@RequestHeader long usuarioId) {
+		return categoriasRepository.findAllByUsuarioId(usuarioId);
 	}
-
+	
 	@PostMapping
-	public Receitas createReceita(@RequestBody Receitas receita, @RequestHeader long usuarioId) {
+	public Categorias createCategoria(@RequestBody Categorias categoria, @RequestHeader long usuarioId) {
 		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
 		
 		if (usuario.isPresent()) {
-			receita.setUsuario(usuario.get());
-			receitasRepository.save(receita);
-		}
-		
-		return receita;
-	}
-
-	@PutMapping
-	public Receitas updateReceita(@RequestBody Receitas receita, @RequestHeader long id, @RequestHeader long usuarioId) {
-		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-				
-		if (usuario.isPresent()) {
-			receita.setUsuario(usuario.get());
-			receita.setId(id);
-			return receitasRepository.save(receita);
+			categoria.setUsuario(usuario.get());
+			return categoriasRepository.save(categoria);
 		}
 		
 		return null;
 	}
-
+	
 	@DeleteMapping
-	public void deleteReceita(@RequestHeader long id, @RequestHeader long usuarioId) {
+	public void deleteCategoria(@RequestHeader long id, @RequestHeader long usuarioId) {
 		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
 		
 		if (usuario.isPresent()) {
-			receitasRepository.deleteById(id);
+			categoriasRepository.deleteById(id);
 		}
+	}
+	
+	@PutMapping
+	public Categorias updateCategoria(@RequestBody Categorias categoria, @RequestHeader long id, @RequestHeader long usuarioId) {
+		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
+		
+		if (usuario.isPresent()) {
+			categoria.setUsuario(usuario.get());
+			categoria.setId(id);
+			categoriasRepository.save(categoria);
+			
+			return categoria;
+		}
+		
+		return null;
 	}
 }

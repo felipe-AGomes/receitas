@@ -29,12 +29,6 @@ public class Usuarios {
 	@JoinColumn(name = "usuario_id")
 	private List<Receitas> receitas;
 	
-	public Usuarios() {}
-
-	public Usuarios(Long id) {
-        this.id = id;
-    }
-	
 	public List<Receitas> getReceitas() {
 		return receitas;
 	}

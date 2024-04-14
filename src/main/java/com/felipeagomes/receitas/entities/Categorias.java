@@ -4,19 +4,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Categorias {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String descricao;
+	
+	@ManyToOne
+	private Usuarios usuario;
 
+	private String descricao;
+	
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
+	}
+	
 	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
