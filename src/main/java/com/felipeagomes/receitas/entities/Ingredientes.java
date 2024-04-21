@@ -1,22 +1,24 @@
 package com.felipeagomes.receitas.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Ingredientes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	@ManyToOne
-	private Usuarios usuario;
-	
 	private String descricao;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuarios usuario;
+
+	@OneToMany
+	@JoinColumn(name = "ingrediente_id")
+	private List<ReceitasIngredientes> receitas;
 
 	public long getId() {
 		return id;
@@ -29,8 +31,26 @@ public class Ingredientes {
 	public String getDescricao() {
 		return descricao;
 	}
- 
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	@JsonIgnore
+	public Usuarios getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
+	}
+
+	@JsonIgnore
+	public List<ReceitasIngredientes> getReceitas() {
+		return receitas;
+	}
+
+	public void setReceitas(List<ReceitasIngredientes> receitas) {
+		this.receitas = receitas;
 	}
 }

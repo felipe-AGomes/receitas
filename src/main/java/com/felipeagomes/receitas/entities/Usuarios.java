@@ -15,27 +15,24 @@ public class Usuarios {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
 	@Column(nullable = false)
 	private String nome;
-
 	@Column(nullable = false)
 	private String senha;
-
 	@Column(unique = true)
 	private String email;
 
 	@OneToMany
 	@JoinColumn(name = "usuario_id")
 	private List<Receitas> receitas;
-	
-	public List<Receitas> getReceitas() {
-		return receitas;
-	}
 
-	public void setReceitas(List<Receitas> receitas) {
-		this.receitas = receitas;
-	}
+	@OneToMany
+	@JoinColumn(name = "usuario_id")
+	private List<Categorias> categorias;
+
+	@OneToMany
+	@JoinColumn(name = "usuario_id")
+	private List<Ingredientes> ingredientes;
 
 	public long getId() {
 		return id;
@@ -67,5 +64,29 @@ public class Usuarios {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Receitas> getReceitas() {
+		return receitas;
+	}
+
+	public void setReceitas(List<Receitas> receitas) {
+		this.receitas = receitas;
+	}
+
+	public List<Categorias> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categorias> categorias) {
+		this.categorias = categorias;
+	}
+
+	public List<Ingredientes> getIngredientes() {
+		return ingredientes;
+	}
+
+	public void setIngredientes(List<Ingredientes> ingredientes) {
+		this.ingredientes = ingredientes;
 	}
 }

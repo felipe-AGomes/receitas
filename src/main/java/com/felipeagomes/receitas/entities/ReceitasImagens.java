@@ -1,36 +1,34 @@
 package com.felipeagomes.receitas.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 @Entity
 public class ReceitasImagens {
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(unique = true, nullable = false)
 	private int seq;
 	@Lob
 	private byte[] imagem;
-	@JoinColumn
-	@ManyToOne
-	private Receitas receita;
+
+    @ManyToOne
+    @JoinColumn(name = "receita_id")
+    private Receitas receita;
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-	
+
 	public int getSeq() {
 		return seq;
 	}
-	
+
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
@@ -43,6 +41,7 @@ public class ReceitasImagens {
 		this.imagem = imagem;
 	}
 
+	@JsonIgnore
 	public Receitas getReceita() {
 		return receita;
 	}

@@ -25,46 +25,46 @@ public class CategoriasController {
 	private CategoriasRepository categoriasRepository;
 	@Autowired
 	private UsuariosRepository usuariosRepository;
-	
-	
+
+
 	@GetMapping
 	public List<Categorias> findAll(@RequestHeader long usuarioId) {
 		return categoriasRepository.findAllByUsuarioId(usuarioId);
 	}
-	
+
 	@PostMapping
 	public Categorias createCategoria(@RequestBody Categorias categoria, @RequestHeader long usuarioId) {
 		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-		
+
 		if (usuario.isPresent()) {
 			categoria.setUsuario(usuario.get());
 			return categoriasRepository.save(categoria);
 		}
-		
+
 		return null;
 	}
-	
+
 	@DeleteMapping
 	public void deleteCategoria(@RequestHeader long id, @RequestHeader long usuarioId) {
 		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-		
+
 		if (usuario.isPresent()) {
 			categoriasRepository.deleteById(id);
 		}
 	}
-	
+
 	@PutMapping
 	public Categorias updateCategoria(@RequestBody Categorias categoria, @RequestHeader long id, @RequestHeader long usuarioId) {
 		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-		
+
 		if (usuario.isPresent()) {
 			categoria.setUsuario(usuario.get());
 			categoria.setId(id);
 			categoriasRepository.save(categoria);
-			
+
 			return categoria;
 		}
-		
+
 		return null;
 	}
 }

@@ -34,32 +34,32 @@ public class ReceitasController {
 	@PostMapping
 	public Receitas createReceita(@RequestBody Receitas receita, @RequestHeader long usuarioId) {
 		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-		
+
 		if (usuario.isPresent()) {
 			receita.setUsuario(usuario.get());
 			receitasRepository.save(receita);
 		}
-		
+
 		return receita;
 	}
 
 	@PutMapping
 	public Receitas updateReceita(@RequestBody Receitas receita, @RequestHeader long id, @RequestHeader long usuarioId) {
 		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-				
+
 		if (usuario.isPresent()) {
 			receita.setUsuario(usuario.get());
 			receita.setId(id);
 			return receitasRepository.save(receita);
 		}
-		
+
 		return null;
 	}
 
 	@DeleteMapping
 	public void deleteReceita(@RequestHeader long id, @RequestHeader long usuarioId) {
 		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-		
+
 		if (usuario.isPresent()) {
 			receitasRepository.deleteById(id);
 		}
