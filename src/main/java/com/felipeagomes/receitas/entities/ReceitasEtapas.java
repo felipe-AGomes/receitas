@@ -5,22 +5,23 @@ import jakarta.persistence.*;
 
 @Entity
 public class ReceitasEtapas {
-	@Id
-	private int seq;
+	@EmbeddedId
+    private ReceitasEtapasId id;
+
 	@Column(length = 4000)
 	private String descricao;
 
-    @Id
+    @MapsId("receitaId")
     @ManyToOne
     @JoinColumn(name = "receita_id")
     private Receitas receita;
 
-    public int getSeq() {
-        return seq;
+    public ReceitasEtapasId getId() {
+        return id;
     }
 
-    public void setSeq(int seq) {
-        this.seq = seq;
+    public void setId(ReceitasEtapasId id) {
+        this.id = id;
     }
 
     public String getDescricao() {
