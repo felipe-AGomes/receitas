@@ -1,24 +1,14 @@
 package com.felipeagomes.receitas.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class ReceitasIngredientes {
+    @EmbeddedId
+    private ReceitasIngredientesId id;
+
 	private String descricao;
-
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "ingrediente_id")
-    private Ingredientes ingrediente;
-
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "receita_id")
-    private Receitas receita;
 
     public String getDescricao() {
         return descricao;
@@ -28,21 +18,11 @@ public class ReceitasIngredientes {
         this.descricao = descricao;
     }
 
-    @JsonIgnore
-    public Ingredientes getIngrediente() {
-        return ingrediente;
+    public ReceitasIngredientesId getId() {
+        return id;
     }
 
-    public void setIngrediente(Ingredientes ingrediente) {
-        this.ingrediente = ingrediente;
-    }
-
-    @JsonIgnore
-    public Receitas getReceita() {
-        return receita;
-    }
-
-    public void setReceita(Receitas receita) {
-        this.receita = receita;
+    public void setId(ReceitasIngredientesId id) {
+        this.id = id;
     }
 }

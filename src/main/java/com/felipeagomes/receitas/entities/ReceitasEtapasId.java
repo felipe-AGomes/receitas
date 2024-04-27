@@ -6,15 +6,15 @@ import java.io.Serializable;
 
 @Embeddable
 public class ReceitasEtapasId implements Serializable {
-    private long seq;
+    private long etapaId;
     private long receitaId;
 
-    public long getSeq() {
-        return seq;
+    public long getEtapaId() {
+        return etapaId;
     }
 
-    public void setSeq(long seq) {
-        this.seq = seq;
+    public void setEtapaId(long etapaId) {
+        this.etapaId = etapaId;
     }
 
     public long getReceitaId() {

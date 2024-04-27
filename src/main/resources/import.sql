@@ -35,14 +35,14 @@ INSERT INTO RECEITAS_INGREDIENTES (INGREDIENTE_ID, RECEITA_ID, DESCRICAO) VALUES
 INSERT INTO RECEITAS_INGREDIENTES (INGREDIENTE_ID, RECEITA_ID, DESCRICAO) VALUES (5, 1, 'Queijo ralado a gosto');
 INSERT INTO RECEITAS_INGREDIENTES (INGREDIENTE_ID, RECEITA_ID, DESCRICAO) VALUES (6, 1, '3 ovos inteiros');
 
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (1, 1, 'Ferva o leite com a água e o óleo.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (2, 1, 'Em uma vasilha misture o polvilho e o sal.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (3, 1, 'Jogue o liquido fervido e misture com uma colher grande.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (4, 1, 'Espere esfriar e despeje o queijo ralado e os ovos.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (5, 1, 'Misture a massa com a mão amassando bem até virar uma cola caseira dura.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (6, 1, 'Faça bolinhas do tamanho que preferir.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (7, 1, 'Asse em forno bem quente até dourar.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (8, 1, 'Sirva quentinho.');
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (1, 1, 'Ferva o leite com a água e o óleo.', 1);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (2, 1, 'Em uma vasilha misture o polvilho e o sal.', 2);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (3, 1, 'Jogue o liquido fervido e misture com uma colher grande.', 3);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (4, 1, 'Espere esfriar e despeje o queijo ralado e os ovos.', 4);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (5, 1, 'Misture a massa com a mão amassando bem até virar uma cola caseira dura.', 5);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (6, 1, 'Faça bolinhas do tamanho que preferir.', 6);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (7, 1, 'Asse em forno bem quente até dourar.', 7);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (8, 1, 'Sirva quentinho.', 8);
 
 
 INSERT INTO RECEITAS (PREPARACAO_MINUTO, ID, USUARIO_ID, OBS_LIVRE, DESCRICAO) VALUES (15, DEFAULT, 1, 'Delicinha de pizza', 'Massa de pizza');
@@ -58,9 +58,9 @@ INSERT INTO RECEITAS_INGREDIENTES (INGREDIENTE_ID, RECEITA_ID, DESCRICAO) VALUES
 INSERT INTO RECEITAS_INGREDIENTES (INGREDIENTE_ID, RECEITA_ID, DESCRICAO) VALUES (7, 2, '1 colher (chá) de açúcar');
 INSERT INTO RECEITAS_INGREDIENTES (INGREDIENTE_ID, RECEITA_ID, DESCRICAO) VALUES (14, 2, '1 colher (sopa) de pinga');
 
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (1, 2, 'Misture o fermento, o sal e o açúcar em um pouco de água morna, até que o fermento esteja completamente dissolvido.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (2, 2, 'Em seguida, adicione metade da medida de farinha de trigo, o óleo e mexa até criar uma consistência pastosa.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (3, 2, 'Acrescente o restante da farinha de trigo, a pinga, a água morna e misture bem.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (4, 2, 'Assim que a massa desgrudar das mãos, deixe crescer por 30 minutos.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (5, 2, 'Abra os discos, fure a massa com um garfo e pincele o molho.');
-INSERT INTO RECEITAS_ETAPAS (SEQ, RECEITA_ID, DESCRICAO) VALUES (6, 2, 'Leve ao forno médio (180° C), preaquecido, por 15 minutos.');
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (1, 2, 'Misture o fermento, o sal e o açúcar em um pouco de água morna, até que o fermento esteja completamente dissolvido.', 1);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (2, 2, 'Em seguida, adicione metade da medida de farinha de trigo, o óleo e mexa até criar uma consistência pastosa.', 2);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (3, 2, 'Acrescente o restante da farinha de trigo, a pinga, a água morna e misture bem.', 3);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (4, 2, 'Assim que a massa desgrudar das mãos, deixe crescer por 30 minutos.', 4);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (5, 2, 'Abra os discos, fure a massa com um garfo e pincele o molho.', 5);
+INSERT INTO RECEITAS_ETAPAS (ETAPA_ID, RECEITA_ID, DESCRICAO, SEQ) VALUES (6, 2, 'Leve ao forno médio (180° C), preaquecido, por 15 minutos.', 6);

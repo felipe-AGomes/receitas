@@ -8,6 +8,9 @@ public class ReceitasEtapas {
 	@EmbeddedId
     private ReceitasEtapasId id;
 
+    @Column(nullable = false)
+    private long seq;
+
 	@Column(length = 4000)
 	private String descricao;
 
@@ -15,6 +18,14 @@ public class ReceitasEtapas {
     @ManyToOne
     @JoinColumn(name = "receita_id")
     private Receitas receita;
+
+    public long getSeq() {
+        return seq;
+    }
+
+    public void setSeq(long seq) {
+        this.seq = seq;
+    }
 
     public ReceitasEtapasId getId() {
         return id;
