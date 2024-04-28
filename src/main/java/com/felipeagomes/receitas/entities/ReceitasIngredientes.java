@@ -8,7 +8,35 @@ public class ReceitasIngredientes {
     @EmbeddedId
     private ReceitasIngredientesId id;
 
-	private String descricao;
+    @ManyToOne
+    @MapsId("receitaId")
+    @JoinColumn(name = "receita_id")
+    private Receitas receita;
+
+    @ManyToOne
+    @MapsId("ingredienteId")
+    @JoinColumn(name = "ingrediente_id")
+    private Ingredientes ingrediente;
+
+    private String descricao;
+
+    @JsonIgnore
+    public Receitas getReceita() {
+        return receita;
+    }
+
+    public void setReceita(Receitas receita) {
+        this.receita = receita;
+    }
+
+    @JsonIgnore
+    public Ingredientes getIngrediente() {
+        return ingrediente;
+    }
+
+    public void setIngrediente(Ingredientes ingrediente) {
+        this.ingrediente = ingrediente;
+    }
 
     public String getDescricao() {
         return descricao;

@@ -1,6 +1,9 @@
 package com.felipeagomes.receitas.entities;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -35,6 +38,25 @@ public class Receitas {
 	@OneToMany
 	@JoinColumn(name = "receita_id")
 	private List<ReceitasImagens> imagens;
+
+	public void addCategoria(Categorias categoria) {
+		if (this.categorias == null) {
+			this.categorias = new ArrayList<>();
+		}
+		this.categorias.add(categoria);
+	}
+
+	public void deleteCategoria(Categorias categoria) {
+		if (categoria != null) {
+			List<Categorias> categoriasFound = categorias.stream()
+					.filter((cat) -> cat.getId() == categoria.getId())
+					.toList();
+			if (!categoriasFound.isEmpty()) {
+				categorias.remove(categoriasFound.getFirst());
+			}
+		}
+	}
+
 
 	public long getId() {
 		return id;
