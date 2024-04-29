@@ -17,9 +17,9 @@ public class Categorias {
 	@JoinColumn(name = "usuario_id")
 	private Usuarios usuario;
 
-	@ManyToMany
-	@JoinTable(name = "receitas_categorias", joinColumns = @JoinColumn(name = "categoria_id"), inverseJoinColumns = @JoinColumn(name = "receita_id"))
-	private List<Receitas> receitas;
+	@OneToMany
+	@JoinColumn(name = "categoria_id")
+	private List<ReceitasCategorias> receitas;
 
 	public long getId() {
 		return id;
@@ -47,11 +47,11 @@ public class Categorias {
 	}
 
 	@JsonIgnore
-	public List<Receitas> getReceitas() {
+	public List<ReceitasCategorias> getReceitas() {
 		return receitas;
 	}
 
-	public void setReceitas(List<Receitas> receitas) {
+	public void setReceitas(List<ReceitasCategorias> receitas) {
 		this.receitas = receitas;
 	}
 }

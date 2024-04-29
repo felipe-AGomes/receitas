@@ -23,9 +23,9 @@ public class Receitas {
 	@JoinColumn(name = "usuario_id")
 	private Usuarios usuario;
 
-	@ManyToMany
-	@JoinTable(name = "receitas_categorias", joinColumns = @JoinColumn(name = "receita_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
-	private List<Categorias> categorias;
+	@OneToMany
+	@JoinColumn(name = "receita_id")
+	private List<ReceitasCategorias> categorias;
 
 	@OneToMany
 	@JoinColumn(name = "receita_id")
@@ -38,25 +38,6 @@ public class Receitas {
 	@OneToMany
 	@JoinColumn(name = "receita_id")
 	private List<ReceitasImagens> imagens;
-
-	public void addCategoria(Categorias categoria) {
-		if (this.categorias == null) {
-			this.categorias = new ArrayList<>();
-		}
-		this.categorias.add(categoria);
-	}
-
-	public void deleteCategoria(Categorias categoria) {
-		if (categoria != null) {
-			List<Categorias> categoriasFound = categorias.stream()
-					.filter((cat) -> cat.getId() == categoria.getId())
-					.toList();
-			if (!categoriasFound.isEmpty()) {
-				categorias.remove(categoriasFound.getFirst());
-			}
-		}
-	}
-
 
 	public long getId() {
 		return id;
@@ -99,11 +80,11 @@ public class Receitas {
 		this.usuario = usuario;
 	}
 
-	public List<Categorias> getCategorias() {
+	public List<ReceitasCategorias> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(List<Categorias> categorias) {
+	public void setCategorias(List<ReceitasCategorias> categorias) {
 		this.categorias = categorias;
 	}
 

@@ -69,50 +69,50 @@ public class ReceitasController {
 		}
 	}
 
-	@GetMapping("/receitascategorias")
-	public List<Categorias> findAllCategorias(@RequestHeader long receitaId) {
-		Optional<Receitas> receita = receitasRepository.findById(receitaId);
-
-        return receita.map(Receitas::getCategorias).orElse(null);
-
-    }
-
-	@PostMapping("/receitascategorias")
-	public Categorias createReceitaCategoria(@RequestHeader long receitaId, @RequestHeader long categoriaId) {
-		Optional<Receitas> receita = receitasRepository.findById(receitaId);
-		Optional<Categorias> categoria = categoriasRepository.findById(categoriaId);
-
-		if (receita.isPresent() && categoria.isPresent()) {
-			receita.get().addCategoria(categoria.get());
-			receitasRepository.save(receita.get());
-
-			return categoria.get();
-		}
-
-		return null;
-	}
-
-	@PutMapping("/receitascategorias")
-	public void updateReceitaCategoria(@RequestHeader long receitaId, @RequestHeader long categoriaId, @RequestBody Categorias categorias) {
-		Optional<Receitas> receita = receitasRepository.findById(receitaId);
-		Optional<Categorias> categoria = categoriasRepository.findById(categoriaId);
-
-		if (receita.isPresent() && categoria.isPresent()) {
-			receita.get().deleteCategoria(categoria.get());
-
-			receita.get().addCategoria(categorias);
-			receitasRepository.save(receita.get());
-		}
-	}
-
-	@DeleteMapping("/receitascategorias")
-	public void deleteReceitaCategoria(@RequestHeader long receitaId, @RequestHeader long categoriaId) {
-		Optional<Receitas> receita = receitasRepository.findById(receitaId);
-		Optional<Categorias> categoria = categoriasRepository.findById(categoriaId);
-
-		if (receita.isPresent() && categoria.isPresent()) {
-			receita.get().deleteCategoria(categoria.get());
-			receitasRepository.save(receita.get());
-		}
-	}
+//	@GetMapping("/receitascategorias")
+//	public List<Categorias> findAllCategorias(@RequestHeader long receitaId) {
+//		Optional<Receitas> receita = receitasRepository.findById(receitaId);
+//
+//        return receita.map(Receitas::getCategorias).orElse(null);
+//
+//    }
+//
+//	@PostMapping("/receitascategorias")
+//	public Categorias createReceitaCategoria(@RequestHeader long receitaId, @RequestHeader long categoriaId) {
+//		Optional<Receitas> receita = receitasRepository.findById(receitaId);
+//		Optional<Categorias> categoria = categoriasRepository.findById(categoriaId);
+//
+//		if (receita.isPresent() && categoria.isPresent()) {
+//			receita.get().addCategoria(categoria.get());
+//			receitasRepository.save(receita.get());
+//
+//			return categoria.get();
+//		}
+//
+//		return null;
+//	}
+//
+//	@PutMapping("/receitascategorias")
+//	public void updateReceitaCategoria(@RequestHeader long receitaId, @RequestHeader long categoriaId, @RequestBody Categorias categorias) {
+//		Optional<Receitas> receita = receitasRepository.findById(receitaId);
+//		Optional<Categorias> categoria = categoriasRepository.findById(categoriaId);
+//
+//		if (receita.isPresent() && categoria.isPresent()) {
+//			receita.get().deleteCategoria(categoria.get());
+//
+//			receita.get().addCategoria(categorias);
+//			receitasRepository.save(receita.get());
+//		}
+//	}
+//
+//	@DeleteMapping("/receitascategorias")
+//	public void deleteReceitaCategoria(@RequestHeader long receitaId, @RequestHeader long categoriaId) {
+//		Optional<Receitas> receita = receitasRepository.findById(receitaId);
+//		Optional<Categorias> categoria = categoriasRepository.findById(categoriaId);
+//
+//		if (receita.isPresent() && categoria.isPresent()) {
+//			receita.get().deleteCategoria(categoria.get());
+//			receitasRepository.save(receita.get());
+//		}
+//	}
 }
