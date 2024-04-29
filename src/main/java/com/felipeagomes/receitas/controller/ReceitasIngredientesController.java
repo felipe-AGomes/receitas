@@ -3,7 +3,7 @@ package com.felipeagomes.receitas.controller;
 import com.felipeagomes.receitas.entities.Ingredientes;
 import com.felipeagomes.receitas.entities.Receitas;
 import com.felipeagomes.receitas.entities.ReceitasIngredientes;
-import com.felipeagomes.receitas.entities.ReceitasIngredientesId;
+import com.felipeagomes.receitas.entities.primarykeys.ReceitasIngredientesId;
 import com.felipeagomes.receitas.repositories.IngredientesRepository;
 import com.felipeagomes.receitas.repositories.ReceitasIngredientesRepository;
 import com.felipeagomes.receitas.repositories.ReceitasRepository;

@@ -1,6 +1,7 @@
 package com.felipeagomes.receitas.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.felipeagomes.receitas.entities.primarykeys.ReceitasEtapasId;
 import jakarta.persistence.*;
 
 @Entity

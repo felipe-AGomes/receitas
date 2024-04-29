@@ -2,7 +2,7 @@ package com.felipeagomes.receitas.controller;
 
 import com.felipeagomes.receitas.entities.Receitas;
 import com.felipeagomes.receitas.entities.ReceitasEtapas;
-import com.felipeagomes.receitas.entities.ReceitasEtapasId;
+import com.felipeagomes.receitas.entities.primarykeys.ReceitasEtapasId;
 import com.felipeagomes.receitas.repositories.ReceitasEtapasRepository;
 import com.felipeagomes.receitas.repositories.ReceitasRepository;
 import com.felipeagomes.receitas.services.ReceitasEtapasService;

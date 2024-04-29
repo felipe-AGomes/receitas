@@ -1,4 +1,4 @@
-package com.felipeagomes.receitas.entities;
+package com.felipeagomes.receitas.entities.primarykeys;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

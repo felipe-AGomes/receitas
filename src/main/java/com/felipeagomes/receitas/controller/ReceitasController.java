@@ -3,8 +3,10 @@ package com.felipeagomes.receitas.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.felipeagomes.receitas.dtos.ReceitasDto;
 import com.felipeagomes.receitas.entities.Categorias;
 import com.felipeagomes.receitas.repositories.CategoriasRepository;
+import com.felipeagomes.receitas.services.ReceitasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +23,14 @@ import com.felipeagomes.receitas.repositories.ReceitasRepository;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
 
 @RestController
-@RequestMapping("/secure")
+@RequestMapping("/secure/receitas")
 public class ReceitasController {
+	private final ReceitasService receitasService;
+
+	public ReceitasController(ReceitasService receitasService) {
+        this.receitasService = receitasService;
+    }
+
 	@Autowired
 	private ReceitasRepository receitasRepository;
 	@Autowired
@@ -30,24 +38,17 @@ public class ReceitasController {
 	@Autowired
 	private CategoriasRepository categoriasRepository;
 
-	@GetMapping("/receitas")
-	public List<Receitas> findAll(@RequestHeader long usuarioId) {
-		return receitasRepository.findByUsuarioId(usuarioId);
+	@GetMapping
+	public List<ReceitasDto> findAllByUsuarioId(@RequestHeader long usuarioId) {
+		return receitasService.findAllByUsuarioId(usuarioId);
 	}
 
-	@PostMapping("/receitas")
-	public Receitas createReceita(@RequestBody Receitas receita, @RequestHeader long usuarioId) {
-		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-
-		if (usuario.isPresent()) {
-			receita.setUsuario(usuario.get());
-			receitasRepository.save(receita);
-		}
-
-		return receita;
+	@PostMapping
+	public ReceitasDto saveReceita(@RequestBody ReceitasDto receita) {
+		return receitasService.saveReceita(receita);
 	}
 
-	@PutMapping("/receitas")
+	@PutMapping
 	public Receitas updateReceita(@RequestBody Receitas receita, @RequestHeader long id, @RequestHeader long usuarioId) {
 		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
 
@@ -60,7 +61,7 @@ public class ReceitasController {
 		return null;
 	}
 
-	@DeleteMapping("/receitas")
+	@DeleteMapping
 	public void deleteReceita(@RequestHeader long id, @RequestHeader long usuarioId) {
 		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
 
@@ -69,7 +70,7 @@ public class ReceitasController {
 		}
 	}
 
-//	@GetMapping("/receitascategorias")
+//	@GetMappingtegorias")
 //	public List<Categorias> findAllCategorias(@RequestHeader long receitaId) {
 //		Optional<Receitas> receita = receitasRepository.findById(receitaId);
 //
@@ -77,7 +78,7 @@ public class ReceitasController {
 //
 //    }
 //
-//	@PostMapping("/receitascategorias")
+//	@PostMappingtegorias")
 //	public Categorias createReceitaCategoria(@RequestHeader long receitaId, @RequestHeader long categoriaId) {
 //		Optional<Receitas> receita = receitasRepository.findById(receitaId);
 //		Optional<Categorias> categoria = categoriasRepository.findById(categoriaId);
@@ -92,7 +93,7 @@ public class ReceitasController {
 //		return null;
 //	}
 //
-//	@PutMapping("/receitascategorias")
+//	@PutMappingtegorias")
 //	public void updateReceitaCategoria(@RequestHeader long receitaId, @RequestHeader long categoriaId, @RequestBody Categorias categorias) {
 //		Optional<Receitas> receita = receitasRepository.findById(receitaId);
 //		Optional<Categorias> categoria = categoriasRepository.findById(categoriaId);
@@ -105,7 +106,7 @@ public class ReceitasController {
 //		}
 //	}
 //
-//	@DeleteMapping("/receitascategorias")
+//	@DeleteMappingtegorias")
 //	public void deleteReceitaCategoria(@RequestHeader long receitaId, @RequestHeader long categoriaId) {
 //		Optional<Receitas> receita = receitasRepository.findById(receitaId);
 //		Optional<Categorias> categoria = categoriasRepository.findById(categoriaId);

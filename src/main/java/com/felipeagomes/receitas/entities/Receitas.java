@@ -39,6 +39,17 @@ public class Receitas {
 	@JoinColumn(name = "receita_id")
 	private List<ReceitasImagens> imagens;
 
+	public Receitas() {
+
+	}
+
+	public Receitas(Usuarios usuario, String descricao, String obsLivre, int preparacaoMinuto) {
+		this.usuario = usuario;
+		this.descricao = descricao;
+		this.obsLivre = obsLivre;
+		this.preparacaoMinuto = preparacaoMinuto;
+	}
+
 	public long getId() {
 		return id;
 	}
