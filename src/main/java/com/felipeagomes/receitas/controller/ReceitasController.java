@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.felipeagomes.receitas.dtos.ReceitasDto;
+import com.felipeagomes.receitas.dtos.ResponseReceitasDto;
 import com.felipeagomes.receitas.entities.Categorias;
 import com.felipeagomes.receitas.repositories.CategoriasRepository;
 import com.felipeagomes.receitas.services.ReceitasService;
@@ -31,44 +32,37 @@ public class ReceitasController {
         this.receitasService = receitasService;
     }
 
-	@Autowired
-	private ReceitasRepository receitasRepository;
-	@Autowired
-	private UsuariosRepository usuariosRepository;
-	@Autowired
-	private CategoriasRepository categoriasRepository;
-
 	@GetMapping
-	public List<ReceitasDto> findAllByUsuarioId(@RequestHeader long usuarioId) {
+	public List<ResponseReceitasDto> findAllByUsuarioId(@RequestHeader long usuarioId) {
 		return receitasService.findAllByUsuarioId(usuarioId);
 	}
 
 	@PostMapping
-	public ReceitasDto saveReceita(@RequestBody ReceitasDto receita) {
+	public ResponseReceitasDto saveReceita(@RequestBody ReceitasDto receita) {
 		return receitasService.saveReceita(receita);
 	}
 
-	@PutMapping
-	public Receitas updateReceita(@RequestBody Receitas receita, @RequestHeader long id, @RequestHeader long usuarioId) {
-		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
+//	@PutMapping
+//	public Receitas updateReceita(@RequestBody Receitas receita, @RequestHeader long id, @RequestHeader long usuarioId) {
+//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
+//
+//		if (usuario.isPresent()) {
+//			receita.setUsuario(usuario.get());
+//			receita.setId(id);
+//			return receitasRepository.save(receita);
+//		}
+//
+//		return null;
+//	}
 
-		if (usuario.isPresent()) {
-			receita.setUsuario(usuario.get());
-			receita.setId(id);
-			return receitasRepository.save(receita);
-		}
-
-		return null;
-	}
-
-	@DeleteMapping
-	public void deleteReceita(@RequestHeader long id, @RequestHeader long usuarioId) {
-		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-
-		if (usuario.isPresent()) {
-			receitasRepository.deleteById(id);
-		}
-	}
+//	@DeleteMapping
+//	public void deleteReceita(@RequestHeader long id, @RequestHeader long usuarioId) {
+//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
+//
+//		if (usuario.isPresent()) {
+//			receitasRepository.deleteById(id);
+//		}
+//	}
 
 //	@GetMappingtegorias")
 //	public List<Categorias> findAllCategorias(@RequestHeader long receitaId) {

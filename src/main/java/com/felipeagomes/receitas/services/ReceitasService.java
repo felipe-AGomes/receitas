@@ -1,7 +1,9 @@
 package com.felipeagomes.receitas.services;
 
 import com.felipeagomes.receitas.dtos.ReceitasDto;
+import com.felipeagomes.receitas.dtos.ResponseReceitasDto;
 import com.felipeagomes.receitas.entities.Receitas;
+import com.felipeagomes.receitas.entities.Usuarios;
 import com.felipeagomes.receitas.repositories.CategoriasRepository;
 import com.felipeagomes.receitas.repositories.ReceitasRepository;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
@@ -24,13 +26,23 @@ public class ReceitasService {
         this.receitasMapping = receitasMapping;
     }
 
-    public List<ReceitasDto> findAllByUsuarioId(long usuarioId) {
+    public List<ResponseReceitasDto> findAllByUsuarioId(long usuarioId) {
         Optional<List<Receitas>> receitas = receitasRepository.findByUsuarioId(usuarioId);
 
-        return receitas.map(receitasList -> receitasList.stream().map(receitasMapping::toReceitasDto).toList()).orElse(null);
+        return receitas.map(receitasList -> receitasList.stream().map(receitasMapping::toResponseReceitasDto).toList()).orElse(null);
     }
 
-    public ReceitasDto saveReceita(ReceitasDto receitaDto) {
+    public ResponseReceitasDto saveReceita(ReceitasDto receitaDto) {
+        Optional<Usuarios> usuario = usuariosRepository.findById(receitaDto.usuarioId());
+
+        if (usuario.isPresent()) {
+            Receitas receita = receitasMapping.toReceitas(receitaDto);
+            receita.setUsuario(usuario.get());
+            Receitas newReceita = receitasRepository.save(receita);
+
+            return receitasMapping.toResponseReceitasDto(newReceita);
+        }
+
         return null;
     }
 }

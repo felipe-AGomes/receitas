@@ -43,8 +43,11 @@ public class Receitas {
 
 	}
 
-	public Receitas(Usuarios usuario, String descricao, String obsLivre, int preparacaoMinuto) {
-		this.usuario = usuario;
+	public Receitas(
+			String descricao,
+			int preparacaoMinuto,
+			String obsLivre
+	) {
 		this.descricao = descricao;
 		this.obsLivre = obsLivre;
 		this.preparacaoMinuto = preparacaoMinuto;
