@@ -3,6 +3,8 @@ package com.felipeagomes.receitas.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.felipeagomes.receitas.entities.primarykeys.ReceitasEtapasId;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class ReceitasEtapas {

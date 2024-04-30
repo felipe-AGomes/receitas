@@ -42,8 +42,16 @@ public class ReceitasController {
 		return receitasService.saveReceita(receita);
 	}
 
+	// TODO: Não está dando para deletar receitas que tem dependentes, ex: categorias, ingredientes...
+	@DeleteMapping
+	public void deleteReceita(@RequestHeader long id) {
+		receitasService.deleteReceitaById(id);
+	}
+
 //	@PutMapping
-//	public Receitas updateReceita(@RequestBody Receitas receita, @RequestHeader long id, @RequestHeader long usuarioId) {
+//	public Receitas updateReceita(@RequestBody ReceitasDto receita) {
+//		receitasService.updateReceita(receita);
+//
 //		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
 //
 //		if (usuario.isPresent()) {
@@ -53,15 +61,6 @@ public class ReceitasController {
 //		}
 //
 //		return null;
-//	}
-
-//	@DeleteMapping
-//	public void deleteReceita(@RequestHeader long id, @RequestHeader long usuarioId) {
-//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-//
-//		if (usuario.isPresent()) {
-//			receitasRepository.deleteById(id);
-//		}
 //	}
 
 //	@GetMappingtegorias")

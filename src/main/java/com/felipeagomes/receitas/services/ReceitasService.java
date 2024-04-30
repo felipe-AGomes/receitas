@@ -45,4 +45,8 @@ public class ReceitasService {
 
         return null;
     }
+
+    public void deleteReceitaById(long id) {
+        receitasRepository.deleteById(id);
+    }
 }
