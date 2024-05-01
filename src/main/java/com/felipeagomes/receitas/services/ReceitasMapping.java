@@ -13,6 +13,7 @@ public class ReceitasMapping {
     public ResponseReceitasDto toResponseReceitasDto(Receitas receitas) {
         return new ResponseReceitasDto(
                 receitas.getId(),
+                receitas.getUsuario().getId(),
                 receitas.getDescricao(),
                 receitas.getPreparacaoMinuto(),
                 receitas.getObsLivre()
@@ -21,6 +22,7 @@ public class ReceitasMapping {
 
     public Receitas toReceitas(ReceitasDto receitaDto) {
         return new Receitas(
+                receitaDto.id(),
                 receitaDto.descricao(),
                 receitaDto.preparacaoMinuto(),
                 receitaDto.obsLivre()

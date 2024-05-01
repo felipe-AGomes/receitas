@@ -1,14 +1,10 @@
 package com.felipeagomes.receitas.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.felipeagomes.receitas.dtos.ReceitasDto;
 import com.felipeagomes.receitas.dtos.ResponseReceitasDto;
-import com.felipeagomes.receitas.entities.Categorias;
-import com.felipeagomes.receitas.repositories.CategoriasRepository;
 import com.felipeagomes.receitas.services.ReceitasService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,11 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.felipeagomes.receitas.entities.Receitas;
-import com.felipeagomes.receitas.entities.Usuarios;
-import com.felipeagomes.receitas.repositories.ReceitasRepository;
-import com.felipeagomes.receitas.repositories.UsuariosRepository;
 
 @RestController
 @RequestMapping("/secure/receitas")
@@ -38,8 +29,8 @@ public class ReceitasController {
 	}
 
 	@PostMapping
-	public ResponseReceitasDto saveReceita(@RequestBody ReceitasDto receita) {
-		return receitasService.saveReceita(receita);
+	public ResponseReceitasDto saveReceita(@RequestBody ReceitasDto receitaDto) {
+		return receitasService.saveReceita(receitaDto);
 	}
 
 	// TODO: Não está dando para deletar receitas que tem dependentes, ex: categorias, ingredientes...
@@ -48,20 +39,10 @@ public class ReceitasController {
 		receitasService.deleteReceitaById(id);
 	}
 
-//	@PutMapping
-//	public Receitas updateReceita(@RequestBody ReceitasDto receita) {
-//		receitasService.updateReceita(receita);
-//
-//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-//
-//		if (usuario.isPresent()) {
-//			receita.setUsuario(usuario.get());
-//			receita.setId(id);
-//			return receitasRepository.save(receita);
-//		}
-//
-//		return null;
-//	}
+	@PutMapping
+	public ResponseReceitasDto updateReceita(@RequestBody ReceitasDto receitaDto) {
+		return receitasService.updateReceita(receitaDto);
+	}
 
 //	@GetMappingtegorias")
 //	public List<Categorias> findAllCategorias(@RequestHeader long receitaId) {

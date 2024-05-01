@@ -44,10 +44,12 @@ public class Receitas {
 	}
 
 	public Receitas(
+			long id,
 			String descricao,
 			int preparacaoMinuto,
 			String obsLivre
 	) {
+		this.id = id;
 		this.descricao = descricao;
 		this.obsLivre = obsLivre;
 		this.preparacaoMinuto = preparacaoMinuto;

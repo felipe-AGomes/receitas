@@ -49,4 +49,27 @@ public class ReceitasService {
     public void deleteReceitaById(long id) {
         receitasRepository.deleteById(id);
     }
+
+    public ResponseReceitasDto updateReceita(ReceitasDto receitaDto) {
+        Optional<Receitas> optionalReceita = receitasRepository.findById(receitaDto.id());
+        Optional<Usuarios> optionalUsuario = usuariosRepository.findById(receitaDto.usuarioId());
+
+        if (optionalReceita.isPresent() && optionalUsuario.isPresent()){
+            Receitas receita = optionalReceita.get();
+            if (!receitaDto.descricao().equals(receita.getDescricao())) {
+                receita.setDescricao(receitaDto.descricao());
+            }
+            if (!receitaDto.obsLivre().equals(receita.getObsLivre())) {
+                receita.setObsLivre(receitaDto.obsLivre());
+            }
+            if (receitaDto.preparacaoMinuto() != receita.getPreparacaoMinuto()) {
+                receita.setPreparacaoMinuto(receitaDto.preparacaoMinuto());
+            }
+
+            receitasRepository.save(receita);
+
+            return receitasMapping.toResponseReceitasDto(receita);
+        }
+        return null;
+    }
 }
