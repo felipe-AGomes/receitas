@@ -20,7 +20,14 @@ public class Ingredientes {
 	@JoinColumn(name = "ingrediente_id")
 	private List<ReceitasIngredientes> receitas;
 
-	public long getId() {
+	public Ingredientes() {}
+
+    public Ingredientes(long id, String descricao) {
+		this.id = id;
+		this.descricao = descricao;
+    }
+
+    public long getId() {
 		return id;
 	}
 

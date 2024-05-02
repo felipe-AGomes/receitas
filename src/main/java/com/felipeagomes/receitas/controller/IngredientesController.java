@@ -3,6 +3,7 @@ package com.felipeagomes.receitas.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.felipeagomes.receitas.dtos.IngredientesDto;
 import com.felipeagomes.receitas.dtos.ResponseIngredientesDto;
 import com.felipeagomes.receitas.entities.Usuarios;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
@@ -23,21 +24,14 @@ public class IngredientesController {
     }
 
 	@GetMapping
-	private List<ResponseIngredientesDto> findAll(@RequestHeader long usuarioId) {
+	private List<ResponseIngredientesDto> findAllByUsuarioId(@RequestHeader long usuarioId) {
 		return ingredientesService.findAllByUsuarioId(usuarioId);
 	}
-//
-//	@PostMapping
-//	private Ingredientes createIngrediente(@RequestHeader long usuarioId, @RequestBody Ingredientes ingrediente) {
-//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-//
-//		if (usuario.isPresent()) {
-//			ingrediente.setUsuario(usuario.get());
-//			return ingredientesRepository.save(ingrediente);
-//		}
-//
-//		return null;
-//	}
+
+	@PostMapping
+	private ResponseIngredientesDto saveIngrediente(@RequestBody IngredientesDto ingredientesDto) {
+		return ingredientesService.saveIngrediente(ingredientesDto);
+	}
 //
 //	@PutMapping
 //	private Ingredientes updateIngrediente(@RequestHeader long id, @RequestHeader long usuarioId, @RequestBody Ingredientes ingrediente) {
