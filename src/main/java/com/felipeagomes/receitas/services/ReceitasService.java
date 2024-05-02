@@ -17,30 +17,30 @@ public class ReceitasService {
     private final ReceitasRepository receitasRepository;
     private final UsuariosRepository usuariosRepository;
     private final CategoriasRepository categoriasRepository;
-    private final ReceitasMapping receitasMapping;
+    private final ReceitasMapper receitasMapper;
 
-    public ReceitasService(ReceitasRepository receitasRepository, UsuariosRepository usuariosRepository, CategoriasRepository categoriasRepository, ReceitasMapping receitasMapping) {
+    public ReceitasService(ReceitasRepository receitasRepository, UsuariosRepository usuariosRepository, CategoriasRepository categoriasRepository, ReceitasMapper receitasMapper) {
         this.receitasRepository = receitasRepository;
         this.usuariosRepository = usuariosRepository;
         this.categoriasRepository = categoriasRepository;
-        this.receitasMapping = receitasMapping;
+        this.receitasMapper = receitasMapper;
     }
 
     public List<ResponseReceitasDto> findAllByUsuarioId(long usuarioId) {
         Optional<List<Receitas>> receitas = receitasRepository.findByUsuarioId(usuarioId);
 
-        return receitas.map(receitasList -> receitasList.stream().map(receitasMapping::toResponseReceitasDto).toList()).orElse(null);
+        return receitas.map(receitasList -> receitasList.stream().map(receitasMapper::toResponseReceitasDto).toList()).orElse(null);
     }
 
     public ResponseReceitasDto saveReceita(ReceitasDto receitaDto) {
         Optional<Usuarios> usuario = usuariosRepository.findById(receitaDto.usuarioId());
 
         if (usuario.isPresent()) {
-            Receitas receita = receitasMapping.toReceitas(receitaDto);
+            Receitas receita = receitasMapper.toReceitas(receitaDto);
             receita.setUsuario(usuario.get());
-            Receitas newReceita = receitasRepository.save(receita);
+            receita = receitasRepository.save(receita);
 
-            return receitasMapping.toResponseReceitasDto(newReceita);
+            return receitasMapper.toResponseReceitasDto(receita);
         }
 
         return null;
@@ -68,7 +68,7 @@ public class ReceitasService {
 
             receitasRepository.save(receita);
 
-            return receitasMapping.toResponseReceitasDto(receita);
+            return receitasMapper.toResponseReceitasDto(receita);
         }
         return null;
     }

@@ -21,6 +21,15 @@ public class Categorias {
 	@JoinColumn(name = "categoria_id")
 	private List<ReceitasCategorias> receitas;
 
+	public Categorias() {
+
+	}
+
+	public Categorias(long id, String descricao) {
+		this.id = id;
+		this.descricao = descricao;
+	}
+
 	public long getId() {
 		return id;
 	}

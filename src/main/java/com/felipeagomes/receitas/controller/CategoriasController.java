@@ -3,6 +3,9 @@ package com.felipeagomes.receitas.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.felipeagomes.receitas.dtos.CategoriasDto;
+import com.felipeagomes.receitas.dtos.ResponseCategoriasDto;
+import com.felipeagomes.receitas.services.CategoriasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,50 +24,43 @@ import com.felipeagomes.receitas.repositories.UsuariosRepository;
 @RestController
 @RequestMapping("/secure/categorias")
 public class CategoriasController {
-	@Autowired
-	private CategoriasRepository categoriasRepository;
-	@Autowired
-	private UsuariosRepository usuariosRepository;
+	private final CategoriasService categoriasService;
 
+	public CategoriasController(CategoriasService categoriasService) {
+		this.categoriasService = categoriasService;
+	}
 
 	@GetMapping
-	public List<Categorias> findAll(@RequestHeader long usuarioId) {
-		return categoriasRepository.findAllByUsuarioId(usuarioId);
+	public List<ResponseCategoriasDto> findAllByUsuarioId(@RequestHeader long usuarioId) {
+		return categoriasService.findAllByUsuarioId(usuarioId);
 	}
 
 	@PostMapping
-	public Categorias createCategoria(@RequestBody Categorias categoria, @RequestHeader long usuarioId) {
-		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-
-		if (usuario.isPresent()) {
-			categoria.setUsuario(usuario.get());
-			return categoriasRepository.save(categoria);
-		}
-
-		return null;
+	public ResponseCategoriasDto saveCategoria(@RequestBody CategoriasDto categoriaDto) {
+		return categoriasService.saveCategoria(categoriaDto);
 	}
-
-	@DeleteMapping
-	public void deleteCategoria(@RequestHeader long id, @RequestHeader long usuarioId) {
-		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-
-		if (usuario.isPresent()) {
-			categoriasRepository.deleteById(id);
-		}
-	}
-
-	@PutMapping
-	public Categorias updateCategoria(@RequestBody Categorias categoria, @RequestHeader long id, @RequestHeader long usuarioId) {
-		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-
-		if (usuario.isPresent()) {
-			categoria.setUsuario(usuario.get());
-			categoria.setId(id);
-			categoriasRepository.save(categoria);
-
-			return categoria;
-		}
-
-		return null;
-	}
+//
+//	@DeleteMapping
+//	public void deleteCategoria(@RequestHeader long id, @RequestHeader long usuarioId) {
+//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
+//
+//		if (usuario.isPresent()) {
+//			categoriasRepository.deleteById(id);
+//		}
+//	}
+//
+//	@PutMapping
+//	public Categorias updateCategoria(@RequestBody Categorias categoria, @RequestHeader long id, @RequestHeader long usuarioId) {
+//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
+//
+//		if (usuario.isPresent()) {
+//			categoria.setUsuario(usuario.get());
+//			categoria.setId(id);
+//			categoriasRepository.save(categoria);
+//
+//			return categoria;
+//		}
+//
+//		return null;
+//	}
 }
