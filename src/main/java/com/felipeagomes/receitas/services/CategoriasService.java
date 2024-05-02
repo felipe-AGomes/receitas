@@ -35,7 +35,30 @@ public class CategoriasService {
         if (optionalUsuario.isPresent()) {
             Categorias categoria = categoriasMapper.toCategorias(categoriaDto);
             categoria.setUsuario(optionalUsuario.get());
-            categoria = categoriasRepository.save(categoria);
+            categoriasRepository.save(categoria);
+
+            return categoriasMapper.toResponseCategoriasDto(categoria);
+        }
+
+        return null;
+    }
+
+    public void deleteCategoriaById(long id) {
+        categoriasRepository.deleteById(id);
+    }
+
+    public ResponseCategoriasDto updateCategoria(CategoriasDto categoriaDto) {
+        Optional<Usuarios> optionalUsuario = usuariosRepository.findById(categoriaDto.usuarioId());
+        Optional<Categorias> optionalCategoria = categoriasRepository.findById(categoriaDto.id());
+
+        if (optionalCategoria.isPresent() && optionalUsuario.isPresent()) {
+            Categorias categoria = optionalCategoria.get();
+
+            if (!categoriaDto.descricao().equals(categoria.getDescricao())) {
+                categoria.setDescricao(categoriaDto.descricao());
+            }
+
+            categoriasRepository.save(categoria);
 
             return categoriasMapper.toResponseCategoriasDto(categoria);
         }

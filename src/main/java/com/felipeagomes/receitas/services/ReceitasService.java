@@ -38,7 +38,7 @@ public class ReceitasService {
         if (usuario.isPresent()) {
             Receitas receita = receitasMapper.toReceitas(receitaDto);
             receita.setUsuario(usuario.get());
-            receita = receitasRepository.save(receita);
+            receitasRepository.save(receita);
 
             return receitasMapper.toResponseReceitasDto(receita);
         }

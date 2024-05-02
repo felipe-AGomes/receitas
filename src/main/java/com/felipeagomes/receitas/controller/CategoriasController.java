@@ -39,28 +39,14 @@ public class CategoriasController {
 	public ResponseCategoriasDto saveCategoria(@RequestBody CategoriasDto categoriaDto) {
 		return categoriasService.saveCategoria(categoriaDto);
 	}
-//
-//	@DeleteMapping
-//	public void deleteCategoria(@RequestHeader long id, @RequestHeader long usuarioId) {
-//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-//
-//		if (usuario.isPresent()) {
-//			categoriasRepository.deleteById(id);
-//		}
-//	}
-//
-//	@PutMapping
-//	public Categorias updateCategoria(@RequestBody Categorias categoria, @RequestHeader long id, @RequestHeader long usuarioId) {
-//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-//
-//		if (usuario.isPresent()) {
-//			categoria.setUsuario(usuario.get());
-//			categoria.setId(id);
-//			categoriasRepository.save(categoria);
-//
-//			return categoria;
-//		}
-//
-//		return null;
-//	}
+
+	@DeleteMapping
+	public void deleteCategoria(@RequestHeader long id) {
+		categoriasService.deleteCategoriaById(id);
+	}
+
+	@PutMapping
+	public ResponseCategoriasDto updateCategoria(@RequestBody CategoriasDto categoriaDto) {
+		return categoriasService.updateCategoria(categoriaDto);
+	}
 }
