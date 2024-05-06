@@ -6,6 +6,7 @@ import com.felipeagomes.receitas.entities.Categorias;
 import com.felipeagomes.receitas.entities.Usuarios;
 import com.felipeagomes.receitas.repositories.CategoriasRepository;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
+import com.felipeagomes.receitas.util.EntityUpdateValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -64,12 +65,8 @@ public class CategoriasService {
     }
 
     private void update(Categorias oldCategoria, CategoriasDto newCategoria) {
-        if (canUpdate(oldCategoria.getDescricao(), newCategoria.descricao())) {
+        if (EntityUpdateValidator.canUpdate(oldCategoria.getDescricao(), newCategoria.descricao())) {
             oldCategoria.setDescricao(newCategoria.descricao());
         }
-    }
-
-    private <T> boolean canUpdate(T oldParam, T newParam) {
-        return !oldParam.equals(newParam) && newParam != null;
     }
 }

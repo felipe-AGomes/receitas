@@ -4,6 +4,7 @@ import com.felipeagomes.receitas.dtos.ResponseUsuariosDto;
 import com.felipeagomes.receitas.dtos.UsuariosDto;
 import com.felipeagomes.receitas.entities.Usuarios;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
+import com.felipeagomes.receitas.util.EntityUpdateValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,20 +56,16 @@ public class UsuariosService {
     }
 
     private void update(Usuarios oldUsuario, UsuariosDto newUsuario) {
-        if (canUpdate(oldUsuario.getNome(), newUsuario.nome())) {
+        if (EntityUpdateValidator.canUpdate(oldUsuario.getNome(), newUsuario.nome())) {
             oldUsuario.setNome(newUsuario.nome());
         }
 
-        if (canUpdate(oldUsuario.getEmail(), newUsuario.email())) {
+        if (EntityUpdateValidator.canUpdate(oldUsuario.getEmail(), newUsuario.email())) {
             oldUsuario.setEmail(newUsuario.email());
         }
 
-        if (canUpdate(oldUsuario.getSenha(), newUsuario.senha())) {
+        if (EntityUpdateValidator.canUpdate(oldUsuario.getSenha(), newUsuario.senha())) {
             oldUsuario.setSenha(newUsuario.senha());
         }
-    }
-
-    private <T> boolean canUpdate(T oldParam, T newParam) {
-        return !oldParam.equals(newParam) && newParam != null;
     }
 }

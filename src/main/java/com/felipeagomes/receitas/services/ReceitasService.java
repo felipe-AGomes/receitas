@@ -8,6 +8,7 @@ import com.felipeagomes.receitas.entities.Usuarios;
 import com.felipeagomes.receitas.repositories.CategoriasRepository;
 import com.felipeagomes.receitas.repositories.ReceitasRepository;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
+import com.felipeagomes.receitas.util.EntityUpdateValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,18 +68,14 @@ public class ReceitasService {
     }
 
     private void update(Receitas oldReceita, ReceitasDto newReceita) {
-        if (canUpdate(oldReceita.getDescricao(), newReceita.descricao())) {
+        if (EntityUpdateValidator.canUpdate(oldReceita.getDescricao(), newReceita.descricao())) {
             oldReceita.setDescricao(newReceita.descricao());
         }
-        if (canUpdate(oldReceita.getObsLivre(), newReceita.obsLivre())) {
+        if (EntityUpdateValidator.canUpdate(oldReceita.getObsLivre(), newReceita.obsLivre())) {
             oldReceita.setObsLivre(newReceita.obsLivre());
         }
-        if (canUpdate(oldReceita.getPreparacaoMinuto(), newReceita.preparacaoMinuto())) {
+        if (EntityUpdateValidator.canUpdate(oldReceita.getPreparacaoMinuto(), newReceita.preparacaoMinuto())) {
             oldReceita.setPreparacaoMinuto(newReceita.preparacaoMinuto());
         }
-    }
-
-    private <T> boolean canUpdate(T oldParam, T newParam) {
-        return !oldParam.equals(newParam) && newParam != null;
     }
 }
