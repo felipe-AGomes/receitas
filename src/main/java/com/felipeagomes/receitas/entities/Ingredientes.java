@@ -13,7 +13,7 @@ public class Ingredientes {
 	private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuarios usuario;
 
 	@OneToMany

@@ -16,7 +16,7 @@ public class ReceitasImagens {
 	private byte[] imagem;
 
     @ManyToOne
-    @JoinColumn(name = "receita_id")
+    @JoinColumn(name = "receita_id", nullable = false)
     private Receitas receita;
 
 	public long getId() {

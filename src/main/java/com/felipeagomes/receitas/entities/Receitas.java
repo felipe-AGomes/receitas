@@ -20,7 +20,7 @@ public class Receitas {
 	private String obsLivre;
 
 	@ManyToOne
-	@JoinColumn(name = "usuario_id")
+	@JoinColumn(name = "usuario_id", nullable = false)
 	private Usuarios usuario;
 
 	@OneToMany
