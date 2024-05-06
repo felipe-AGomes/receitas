@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"receita_id", "seq"})})
 public class ReceitasEtapas {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

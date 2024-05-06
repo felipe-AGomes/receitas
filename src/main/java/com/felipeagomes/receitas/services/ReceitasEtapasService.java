@@ -28,39 +28,6 @@ public class ReceitasEtapasService {
         this.receitasEtapasMapper = receitasEtapasMapper;
     }
 
-//    public long getNextSequence(long receitaId) {
-//        Optional<List<ReceitasEtapas>> receitasEtapas = receitasEtapasRepository.findByReceitaId(receitaId);
-//
-//        if (receitasEtapas.isEmpty()) {
-//            throw new RuntimeException("Receitas etapas não encontrada");
-//        }
-//
-//        long nextSequence = 0;
-//
-//        for (ReceitasEtapas receitaEtapa : receitasEtapas.get()) {
-//            nextSequence = Math.max(receitaEtapa.getSeq() + 1, nextSequence);
-//        }
-//
-//        return nextSequence;
-//    }
-//
-//    public void reorderSeq(long receitaId) {
-//        Optional<List<ReceitasEtapas>> receitasEtapas = receitasEtapasRepository.findByReceitaId(receitaId);
-//
-//        if (receitasEtapas.isEmpty()) {
-//            return;
-//        }
-//
-//        for (int i = 0; i < receitasEtapas.get().size(); i++) {
-//            ReceitasEtapas receitaEtapa = receitasEtapas.get().get(i);
-//            if (receitaEtapa.getSeq() != i) {
-//                receitaEtapa.setSeq(i);
-//                receitasEtapasRepository.save(receitaEtapa);
-//                receitasEtapasRepository.flush();
-//            }
-//        }
-//    }
-
     public List<ResponseReceitasEtapasDto> findAllByReceitaId(long receitaId) {
         Optional<List<ReceitasEtapas>> optionalReceitasEtapas = receitasEtapasRepository.findByReceitaId(receitaId);
 
@@ -72,6 +39,11 @@ public class ReceitasEtapasService {
 
         if (optionalReceitas.isPresent()) {
             Receitas receita = optionalReceitas.get();
+
+            if (isSeqAlreadyUsed(receita, receitasEtapasDto.seq())) {
+                adjustSequence(receita, receitasEtapasDto.seq());
+            }
+
             ReceitasEtapas receitasEtapas = receitasEtapasMapper.toReceitasEtapas(receitasEtapasDto);
             receitasEtapas.setReceita(receita);
 
@@ -79,5 +51,21 @@ public class ReceitasEtapasService {
         }
 
         return null;
+    }
+
+    private boolean isSeqAlreadyUsed(Receitas receita, long seq) {
+        return receita.getEtapas().stream().filter((etapa) -> etapa.getSeq() == seq).toList().size() == 1;
+    }
+
+    private void adjustSequence(Receitas receita, long seq) {
+        List<ReceitasEtapas> receitasEtapas = receita.getEtapas();
+
+        for (int i = receitasEtapas.size() - 1; i > 0; i--) {
+            ReceitasEtapas etapa = receitasEtapas.get(i);
+            if (etapa.getSeq() >= seq) {
+                etapa.setSeq(etapa.getSeq() + 1);
+                receitasEtapasRepository.save(etapa);
+            }
+        }
     }
 }
