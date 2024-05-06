@@ -47,6 +47,7 @@ public class IngredientesService {
         ingredientesRepository.deleteById(id);
     }
 
+    // TODO: AJUSTAR PARA UTILIZAR O METODO UPDATE E CANUPDATE
     public ResponseIngredientesDto updateIngrediente(IngredientesDto ingredienteDto) {
         Optional<Usuarios> optionalUsuario = usuariosRepository.findById(ingredienteDto.usuarioId());
         Optional<Ingredientes> optionalIngrediente = ingredientesRepository.findById(ingredienteDto.usuarioId());
@@ -67,4 +68,22 @@ public class IngredientesService {
             oldIngrediente.setDescricao(newIngrediente.descricao());
         }
     }
+
+//    private void update(Usuarios oldUsuario, UsuariosDto newUsuario) {
+//        if (canUpdate(oldUsuario.getNome(), newUsuario.nome())) {
+//            oldUsuario.setNome(newUsuario.nome());
+//        }
+//
+//        if (canUpdate(oldUsuario.getEmail(), newUsuario.email())) {
+//            oldUsuario.setEmail(newUsuario.email());
+//        }
+//
+//        if (canUpdate(oldUsuario.getSenha(), newUsuario.senha())) {
+//            oldUsuario.setSenha(newUsuario.senha());
+//        }
+//    }
+//
+//    private <T> boolean canUpdate(T oldParam, T newParam) {
+//        return !oldParam.equals(newParam) && newParam != null;
+//    }
 }

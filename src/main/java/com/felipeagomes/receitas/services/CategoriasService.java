@@ -47,6 +47,7 @@ public class CategoriasService {
         categoriasRepository.deleteById(id);
     }
 
+    // TODO: AJUSTAR PARA UTILIZAR O METODO UPDATE E CANUPDATE
     public ResponseCategoriasDto updateCategoria(CategoriasDto categoriaDto) {
         Optional<Usuarios> optionalUsuario = usuariosRepository.findById(categoriaDto.usuarioId());
         Optional<Categorias> optionalCategoria = categoriasRepository.findById(categoriaDto.id());
@@ -65,4 +66,22 @@ public class CategoriasService {
 
         return null;
     }
+
+//    private void update(Usuarios oldUsuario, UsuariosDto newUsuario) {
+//        if (canUpdate(oldUsuario.getNome(), newUsuario.nome())) {
+//            oldUsuario.setNome(newUsuario.nome());
+//        }
+//
+//        if (canUpdate(oldUsuario.getEmail(), newUsuario.email())) {
+//            oldUsuario.setEmail(newUsuario.email());
+//        }
+//
+//        if (canUpdate(oldUsuario.getSenha(), newUsuario.senha())) {
+//            oldUsuario.setSenha(newUsuario.senha());
+//        }
+//    }
+//
+//    private <T> boolean canUpdate(T oldParam, T newParam) {
+//        return !oldParam.equals(newParam) && newParam != null;
+//    }
 }

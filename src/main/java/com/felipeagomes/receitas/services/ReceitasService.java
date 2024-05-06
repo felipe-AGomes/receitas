@@ -2,6 +2,7 @@ package com.felipeagomes.receitas.services;
 
 import com.felipeagomes.receitas.dtos.ReceitasDto;
 import com.felipeagomes.receitas.dtos.ResponseReceitasDto;
+import com.felipeagomes.receitas.dtos.UsuariosDto;
 import com.felipeagomes.receitas.entities.Receitas;
 import com.felipeagomes.receitas.entities.Usuarios;
 import com.felipeagomes.receitas.repositories.CategoriasRepository;
@@ -50,6 +51,7 @@ public class ReceitasService {
         receitasRepository.deleteById(id);
     }
 
+    // TODO: AJUSTAR PARA UTILIZAR O METODO UPDATE E CANUPDATE
     public ResponseReceitasDto updateReceita(ReceitasDto receitaDto) {
         Optional<Receitas> optionalReceita = receitasRepository.findById(receitaDto.id());
         Optional<Usuarios> optionalUsuario = usuariosRepository.findById(receitaDto.usuarioId());
@@ -72,4 +74,22 @@ public class ReceitasService {
         }
         return null;
     }
+
+//    private void update(Usuarios oldUsuario, UsuariosDto newUsuario) {
+//        if (canUpdate(oldUsuario.getNome(), newUsuario.nome())) {
+//            oldUsuario.setNome(newUsuario.nome());
+//        }
+//
+//        if (canUpdate(oldUsuario.getEmail(), newUsuario.email())) {
+//            oldUsuario.setEmail(newUsuario.email());
+//        }
+//
+//        if (canUpdate(oldUsuario.getSenha(), newUsuario.senha())) {
+//            oldUsuario.setSenha(newUsuario.senha());
+//        }
+//    }
+//
+//    private <T> boolean canUpdate(T oldParam, T newParam) {
+//        return !oldParam.equals(newParam) && newParam != null;
+//    }
 }
