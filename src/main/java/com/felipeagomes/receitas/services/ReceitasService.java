@@ -51,22 +51,13 @@ public class ReceitasService {
         receitasRepository.deleteById(id);
     }
 
-    // TODO: AJUSTAR PARA UTILIZAR O METODO UPDATE E CANUPDATE
     public ResponseReceitasDto updateReceita(ReceitasDto receitaDto) {
         Optional<Receitas> optionalReceita = receitasRepository.findById(receitaDto.id());
         Optional<Usuarios> optionalUsuario = usuariosRepository.findById(receitaDto.usuarioId());
 
         if (optionalReceita.isPresent() && optionalUsuario.isPresent()){
             Receitas receita = optionalReceita.get();
-            if (!receitaDto.descricao().equals(receita.getDescricao())) {
-                receita.setDescricao(receitaDto.descricao());
-            }
-            if (!receitaDto.obsLivre().equals(receita.getObsLivre())) {
-                receita.setObsLivre(receitaDto.obsLivre());
-            }
-            if (receitaDto.preparacaoMinuto() != receita.getPreparacaoMinuto()) {
-                receita.setPreparacaoMinuto(receitaDto.preparacaoMinuto());
-            }
+            update(receita, receitaDto);
 
             receitasRepository.save(receita);
 
@@ -75,21 +66,19 @@ public class ReceitasService {
         return null;
     }
 
-//    private void update(Usuarios oldUsuario, UsuariosDto newUsuario) {
-//        if (canUpdate(oldUsuario.getNome(), newUsuario.nome())) {
-//            oldUsuario.setNome(newUsuario.nome());
-//        }
-//
-//        if (canUpdate(oldUsuario.getEmail(), newUsuario.email())) {
-//            oldUsuario.setEmail(newUsuario.email());
-//        }
-//
-//        if (canUpdate(oldUsuario.getSenha(), newUsuario.senha())) {
-//            oldUsuario.setSenha(newUsuario.senha());
-//        }
-//    }
-//
-//    private <T> boolean canUpdate(T oldParam, T newParam) {
-//        return !oldParam.equals(newParam) && newParam != null;
-//    }
+    private void update(Receitas oldReceita, ReceitasDto newReceita) {
+        if (canUpdate(oldReceita.getDescricao(), newReceita.descricao())) {
+            oldReceita.setDescricao(newReceita.descricao());
+        }
+        if (canUpdate(oldReceita.getObsLivre(), newReceita.obsLivre())) {
+            oldReceita.setObsLivre(newReceita.obsLivre());
+        }
+        if (canUpdate(oldReceita.getPreparacaoMinuto(), newReceita.preparacaoMinuto())) {
+            oldReceita.setPreparacaoMinuto(newReceita.preparacaoMinuto());
+        }
+    }
+
+    private <T> boolean canUpdate(T oldParam, T newParam) {
+        return !oldParam.equals(newParam) && newParam != null;
+    }
 }
