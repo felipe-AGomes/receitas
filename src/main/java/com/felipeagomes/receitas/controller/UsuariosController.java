@@ -3,6 +3,9 @@ package com.felipeagomes.receitas.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.felipeagomes.receitas.dtos.ResponseUsuariosDto;
+import com.felipeagomes.receitas.dtos.UsuariosDto;
+import com.felipeagomes.receitas.services.UsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,39 +20,41 @@ import com.felipeagomes.receitas.entities.Usuarios;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping
 public class UsuariosController {
-	@Autowired
-	private UsuariosRepository usuariosRepository;
+	private final UsuariosService usuariosService;
 
-	@GetMapping("/secure/adm/usuarios")
-	public List<Usuarios> findAll() {
-		return usuariosRepository.findAll();
+    public UsuariosController(UsuariosService usuariosService) {
+        this.usuariosService = usuariosService;
+    }
+
+    @GetMapping("/secure/adm/usuarios")
+	public List<ResponseUsuariosDto> findAll() {
+		return usuariosService.findAll();
+	}
+
+	@GetMapping("/secure/usuarios")
+	public ResponseUsuariosDto findByUsuarioId(@RequestHeader long id) {
+		return usuariosService.findByUsuarioId(id);
 	}
 
 	@PostMapping("/register")
-	public Usuarios createUsuario(@RequestBody Usuarios usuario) {
-		Usuarios hasUsuario = usuariosRepository.findByEmail(usuario.getEmail());
-
-		if (hasUsuario == null) {
-			return usuariosRepository.save(usuario);
-		}
-
-		return null;
+	public ResponseUsuariosDto saveUsuario(@RequestBody UsuariosDto usuarioDto) {
+		return usuariosService.saveUsuario(usuarioDto);
 	}
 
 	@DeleteMapping("/secure/usuarios")
 	public void deleteUsuario(@RequestHeader long id) {
-		usuariosRepository.deleteById(id);
+		usuariosService.deleteUsuarioById(id);
 	}
-
-	@PutMapping("/secure/usuarios")
-	public void updateUsuario(@RequestHeader long usuarioId, @RequestBody Usuarios usuario) {
-		Optional<Usuarios> user = usuariosRepository.findById(usuarioId);
-
-		if (user.isPresent()) {
-			usuario.setId(usuarioId);
-			usuariosRepository.save(usuario);
-		}
-	}
+//
+//	@PutMapping("/secure/usuarios")
+//	public void updateUsuario(@RequestHeader long usuarioId, @RequestBody Usuarios usuario) {
+//		Optional<Usuarios> user = usuariosRepository.findById(usuarioId);
+//
+//		if (user.isPresent()) {
+//			usuario.setId(usuarioId);
+//			usuariosRepository.save(usuario);
+//		}
+//	}
 }

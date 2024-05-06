@@ -34,6 +34,15 @@ public class Usuarios {
 	@JoinColumn(name = "usuario_id")
 	private List<Ingredientes> ingredientes;
 
+	public Usuarios() {}
+
+	public Usuarios(long id, String nome, String email, String senha) {
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+	}
+
 	public long getId() {
 		return id;
 	}
