@@ -42,4 +42,29 @@ public class IngredientesService {
 
         return null;
     }
+
+    public void deleteIngredienteById(long id) {
+        ingredientesRepository.deleteById(id);
+    }
+
+    public ResponseIngredientesDto updateIngrediente(IngredientesDto ingredienteDto) {
+        Optional<Usuarios> optionalUsuario = usuariosRepository.findById(ingredienteDto.usuarioId());
+        Optional<Ingredientes> optionalIngrediente = ingredientesRepository.findById(ingredienteDto.usuarioId());
+
+        if (optionalUsuario.isPresent() && optionalIngrediente.isPresent()) {
+            Ingredientes ingrediente = optionalIngrediente.get();
+            update(ingrediente, ingredienteDto);
+            ingredientesRepository.save(ingrediente);
+
+            return ingredientesMapper.toResponseIngredientesDto(ingrediente);
+        }
+
+        return null;
+    }
+
+    private void update(Ingredientes oldIngrediente, IngredientesDto newIngrediente) {
+        if (!newIngrediente.descricao().equals(oldIngrediente.getDescricao())) {
+            oldIngrediente.setDescricao(newIngrediente.descricao());
+        }
+    }
 }

@@ -32,26 +32,15 @@ public class IngredientesController {
 	private ResponseIngredientesDto saveIngrediente(@RequestBody IngredientesDto ingredientesDto) {
 		return ingredientesService.saveIngrediente(ingredientesDto);
 	}
-//
-//	@PutMapping
-//	private Ingredientes updateIngrediente(@RequestHeader long id, @RequestHeader long usuarioId, @RequestBody Ingredientes ingrediente) {
-//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-//
-//		if (usuario.isPresent()) {
-//			ingrediente.setId(id);
-//			ingrediente.setUsuario(usuario.get());
-//			return ingredientesRepository.save(ingrediente);
-//		}
-//
-//		return null;
-//	}
-//
-//	@DeleteMapping
-//	private void deleteIngrediente(@RequestHeader long id, @RequestHeader long usuarioId) {
-//		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
-//
-//		if (usuario.isPresent()) {
-//			ingredientesRepository.deleteById(id);
-//		}
-//	}
+
+	@DeleteMapping
+	private void deleteIngrediente(@RequestHeader long id) {
+		ingredientesService.deleteIngredienteById(id);
+	}
+
+	@PutMapping
+	private ResponseIngredientesDto updateIngrediente(@RequestBody IngredientesDto ingredienteDto) {
+		return ingredientesService.updateIngrediente(ingredienteDto);
+	}
+
 }
