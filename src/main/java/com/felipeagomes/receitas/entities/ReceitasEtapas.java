@@ -1,15 +1,13 @@
 package com.felipeagomes.receitas.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.felipeagomes.receitas.entities.primarykeys.ReceitasEtapasId;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class ReceitasEtapas {
-	@EmbeddedId
-    private ReceitasEtapasId id;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(nullable = false)
     private long seq;
@@ -17,10 +15,25 @@ public class ReceitasEtapas {
 	@Column(length = 4000)
 	private String descricao;
 
-    @MapsId("receitaId")
     @ManyToOne
-    @JoinColumn(name = "receita_id")
+    @JoinColumn(name = "receita_id", nullable = false)
     private Receitas receita;
+
+    public ReceitasEtapas() {}
+
+    public ReceitasEtapas(long id, long seq, String descricao) {
+        this.id = id;
+        this.seq = seq;
+        this.descricao = descricao;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getSeq() {
         return seq;
@@ -28,14 +41,6 @@ public class ReceitasEtapas {
 
     public void setSeq(long seq) {
         this.seq = seq;
-    }
-
-    public ReceitasEtapasId getId() {
-        return id;
-    }
-
-    public void setId(ReceitasEtapasId id) {
-        this.id = id;
     }
 
     public String getDescricao() {
