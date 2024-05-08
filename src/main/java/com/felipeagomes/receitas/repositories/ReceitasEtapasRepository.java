@@ -8,4 +8,8 @@ import java.util.Optional;
 
 public interface ReceitasEtapasRepository extends JpaRepository<ReceitasEtapas, Long> {
     Optional<List<ReceitasEtapas>> findByReceitaId(long receitaId);
+
+    Optional<List<ReceitasEtapas>> findByReceitaIdOrderBySeq(long id);
+
+    Optional<ReceitasEtapas> findByIdOrderBySeq(long id);
 }
