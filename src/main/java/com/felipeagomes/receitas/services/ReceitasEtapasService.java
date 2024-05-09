@@ -1,7 +1,7 @@
 package com.felipeagomes.receitas.services;
 
-import com.felipeagomes.receitas.dtos.ReceitasEtapasDto;
-import com.felipeagomes.receitas.dtos.ResponseReceitasEtapasDto;
+import com.felipeagomes.receitas.dtos.in.ReceitasEtapasDto;
+import com.felipeagomes.receitas.dtos.out.ResponseReceitasEtapasDto;
 import com.felipeagomes.receitas.entities.Receitas;
 import com.felipeagomes.receitas.entities.ReceitasEtapas;
 import com.felipeagomes.receitas.exceptions.InvalidSequenceException;

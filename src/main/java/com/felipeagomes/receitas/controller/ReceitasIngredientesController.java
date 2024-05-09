@@ -1,20 +1,11 @@
 package com.felipeagomes.receitas.controller;
 
-import com.felipeagomes.receitas.dtos.ReceitasIngredientesDto;
-import com.felipeagomes.receitas.dtos.ResponseReceitasIngredientesDto;
-import com.felipeagomes.receitas.entities.Ingredientes;
-import com.felipeagomes.receitas.entities.Receitas;
-import com.felipeagomes.receitas.entities.ReceitasIngredientes;
-import com.felipeagomes.receitas.entities.primarykeys.ReceitasIngredientesId;
-import com.felipeagomes.receitas.repositories.IngredientesRepository;
-import com.felipeagomes.receitas.repositories.ReceitasIngredientesRepository;
-import com.felipeagomes.receitas.repositories.ReceitasRepository;
+import com.felipeagomes.receitas.dtos.in.ReceitasIngredientesDto;
+import com.felipeagomes.receitas.dtos.out.ResponseReceitasIngredientesDto;
 import com.felipeagomes.receitas.services.ReceitasIngredientesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/secure/receitasingredientes")

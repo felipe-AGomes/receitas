@@ -2,8 +2,8 @@ package com.felipeagomes.receitas.controller;
 
 import java.util.List;
 
-import com.felipeagomes.receitas.dtos.IngredientesDto;
-import com.felipeagomes.receitas.dtos.ResponseIngredientesDto;
+import com.felipeagomes.receitas.dtos.in.IngredientesDto;
+import com.felipeagomes.receitas.dtos.out.ResponseIngredientesDto;
 import com.felipeagomes.receitas.services.IngredientesService;
 import org.springframework.web.bind.annotation.*;
 

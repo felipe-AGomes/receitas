@@ -2,8 +2,8 @@ package com.felipeagomes.receitas.controller;
 
 import java.util.List;
 
-import com.felipeagomes.receitas.dtos.ReceitasDto;
-import com.felipeagomes.receitas.dtos.ResponseReceitasDto;
+import com.felipeagomes.receitas.dtos.in.ReceitasDto;
+import com.felipeagomes.receitas.dtos.out.ResponseReceitasDto;
 import com.felipeagomes.receitas.services.ReceitasService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

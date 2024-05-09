@@ -1,7 +1,7 @@
 package com.felipeagomes.receitas.services;
 
-import com.felipeagomes.receitas.dtos.ReceitasDto;
-import com.felipeagomes.receitas.dtos.ResponseReceitasDto;
+import com.felipeagomes.receitas.dtos.in.ReceitasDto;
+import com.felipeagomes.receitas.dtos.out.ResponseReceitasDto;
 import com.felipeagomes.receitas.entities.Receitas;
 import com.felipeagomes.receitas.entities.Usuarios;
 import com.felipeagomes.receitas.mappers.ReceitasMapper;

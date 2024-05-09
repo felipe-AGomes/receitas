@@ -1,8 +1,4 @@
-package com.felipeagomes.receitas.dtos;
-
-import com.felipeagomes.receitas.entities.*;
-
-import java.util.List;
+package com.felipeagomes.receitas.dtos.in;
 
 public record ReceitasDto(
         long id,

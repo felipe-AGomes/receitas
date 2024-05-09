@@ -1,7 +1,7 @@
 package com.felipeagomes.receitas.mappers;
 
-import com.felipeagomes.receitas.dtos.IngredientesDto;
-import com.felipeagomes.receitas.dtos.ResponseIngredientesDto;
+import com.felipeagomes.receitas.dtos.in.IngredientesDto;
+import com.felipeagomes.receitas.dtos.out.ResponseIngredientesDto;
 import com.felipeagomes.receitas.entities.Ingredientes;
 import org.springframework.stereotype.Service;
 

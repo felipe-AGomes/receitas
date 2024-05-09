@@ -1,8 +1,7 @@
 package com.felipeagomes.receitas.controller;
 
-import com.felipeagomes.receitas.dtos.ReceitasDto;
-import com.felipeagomes.receitas.dtos.ReceitasEtapasDto;
-import com.felipeagomes.receitas.dtos.ResponseReceitasEtapasDto;
+import com.felipeagomes.receitas.dtos.in.ReceitasEtapasDto;
+import com.felipeagomes.receitas.dtos.out.ResponseReceitasEtapasDto;
 import com.felipeagomes.receitas.services.ReceitasEtapasService;
 import org.springframework.web.bind.annotation.*;
 

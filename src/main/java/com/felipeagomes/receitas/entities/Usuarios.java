@@ -15,10 +15,13 @@ public class Usuarios {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
 	@Column(nullable = false)
 	private String nome;
+
 	@Column(nullable = false)
 	private String senha;
+
 	@Column(unique = true)
 	private String email;
 
