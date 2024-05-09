@@ -23,7 +23,6 @@ public class ReceitasIngredientes {
 
     private String descricao;
 
-    @JsonIgnore
     public Receitas getReceita() {
         return receita;
     }
@@ -32,7 +31,6 @@ public class ReceitasIngredientes {
         this.receita = receita;
     }
 
-    @JsonIgnore
     public Ingredientes getIngrediente() {
         return ingrediente;
     }

@@ -43,7 +43,6 @@ public class ReceitasImagens {
 		this.imagem = imagem;
 	}
 
-	@JsonIgnore
 	public Receitas getReceita() {
 		return receita;
 	}

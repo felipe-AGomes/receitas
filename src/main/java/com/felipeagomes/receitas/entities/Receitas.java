@@ -87,7 +87,6 @@ public class Receitas {
 		this.obsLivre = obsLivre;
 	}
 
-	@JsonIgnore
 	public Usuarios getUsuario() {
 		return usuario;
 	}

@@ -51,7 +51,6 @@ public class ReceitasEtapas {
         this.descricao = descricao;
     }
 
-    @JsonIgnore
     public Receitas getReceita() {
         return receita;
     }

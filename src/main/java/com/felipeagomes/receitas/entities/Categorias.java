@@ -44,7 +44,6 @@ public class Categorias {
 		this.descricao = descricao;
 	}
 
-	@JsonIgnore
 	public Usuarios getUsuario() {
 		return usuario;
 	}
@@ -53,7 +52,6 @@ public class Categorias {
 		this.usuario = usuario;
 	}
 
-	@JsonIgnore
 	public List<ReceitasCategorias> getReceitas() {
 		return receitas;
 	}

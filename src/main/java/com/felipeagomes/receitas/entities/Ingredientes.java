@@ -43,7 +43,6 @@ public class Ingredientes {
 		this.descricao = descricao;
 	}
 
-	@JsonIgnore
 	public Usuarios getUsuario() {
 		return usuario;
 	}
@@ -52,7 +51,6 @@ public class Ingredientes {
 		this.usuario = usuario;
 	}
 
-	@JsonIgnore
 	public List<ReceitasIngredientes> getReceitas() {
 		return receitas;
 	}

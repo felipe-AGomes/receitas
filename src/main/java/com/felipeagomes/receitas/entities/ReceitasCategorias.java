@@ -29,7 +29,6 @@ public class ReceitasCategorias {
         this.id = id;
     }
 
-    @JsonIgnore
     public Receitas getReceita() {
         return receita;
     }
@@ -38,7 +37,6 @@ public class ReceitasCategorias {
         this.receita = receita;
     }
 
-    @JsonIgnore
     public Categorias getCategoria() {
         return categoria;
     }
