@@ -2,9 +2,9 @@ package com.felipeagomes.receitas.services;
 
 import com.felipeagomes.receitas.dtos.ReceitasDto;
 import com.felipeagomes.receitas.dtos.ResponseReceitasDto;
-import com.felipeagomes.receitas.dtos.UsuariosDto;
 import com.felipeagomes.receitas.entities.Receitas;
 import com.felipeagomes.receitas.entities.Usuarios;
+import com.felipeagomes.receitas.mappers.ReceitasMapper;
 import com.felipeagomes.receitas.repositories.CategoriasRepository;
 import com.felipeagomes.receitas.repositories.ReceitasRepository;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;

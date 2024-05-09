@@ -1,10 +1,10 @@
 package com.felipeagomes.receitas.services;
 
+import com.felipeagomes.receitas.dtos.ReceitasIngredientesDto;
 import com.felipeagomes.receitas.dtos.ResponseReceitasIngredientesDto;
 import com.felipeagomes.receitas.entities.ReceitasIngredientes;
+import com.felipeagomes.receitas.mappers.ReceitasIngredientesMapper;
 import com.felipeagomes.receitas.repositories.ReceitasIngredientesRepository;
-import org.springframework.boot.json.GsonJsonParser;
-import org.springframework.boot.json.JsonParser;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,12 +22,10 @@ public class ReceitasIngredientesService {
 
     public List<ResponseReceitasIngredientesDto> findAllByReceitaId(long receitaId) {
         Optional<List<ReceitasIngredientes>> optionalReceitasIngredientes = receitasIngredientesRepository.findByReceitaId(receitaId);
+        return optionalReceitasIngredientes.map(receitasIngredientes -> receitasIngredientes.stream().map(receitasIngredientesMapper::toResponseReceitasIngredientesDto).toList()).orElse(null);
+    }
 
-        if (optionalReceitasIngredientes.isPresent()) {
-            List<ReceitasIngredientes> receitasIngredientes = optionalReceitasIngredientes.get();
-
-            return receitasIngredientes.stream().map(receitasIngredientesMapper::toResponseReceitasIngredientesDto).toList();
-        }
+    public ResponseReceitasIngredientesDto saveReceitaIngrediente(ReceitasIngredientesDto receitaIngredienteDto) {
 
         return null;
     }

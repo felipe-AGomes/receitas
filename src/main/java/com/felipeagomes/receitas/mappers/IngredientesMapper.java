@@ -1,4 +1,4 @@
-package com.felipeagomes.receitas.services;
+package com.felipeagomes.receitas.mappers;
 
 import com.felipeagomes.receitas.dtos.IngredientesDto;
 import com.felipeagomes.receitas.dtos.ResponseIngredientesDto;

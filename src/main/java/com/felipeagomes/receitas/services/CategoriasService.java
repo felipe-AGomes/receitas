@@ -4,6 +4,7 @@ import com.felipeagomes.receitas.dtos.CategoriasDto;
 import com.felipeagomes.receitas.dtos.ResponseCategoriasDto;
 import com.felipeagomes.receitas.entities.Categorias;
 import com.felipeagomes.receitas.entities.Usuarios;
+import com.felipeagomes.receitas.mappers.CategoriasMapper;
 import com.felipeagomes.receitas.repositories.CategoriasRepository;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
 import com.felipeagomes.receitas.util.EntityUpdateValidator;

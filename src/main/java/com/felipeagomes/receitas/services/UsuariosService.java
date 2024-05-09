@@ -3,6 +3,7 @@ package com.felipeagomes.receitas.services;
 import com.felipeagomes.receitas.dtos.ResponseUsuariosDto;
 import com.felipeagomes.receitas.dtos.UsuariosDto;
 import com.felipeagomes.receitas.entities.Usuarios;
+import com.felipeagomes.receitas.mappers.UsuariosMapper;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
 import com.felipeagomes.receitas.util.EntityUpdateValidator;
 import org.springframework.stereotype.Service;

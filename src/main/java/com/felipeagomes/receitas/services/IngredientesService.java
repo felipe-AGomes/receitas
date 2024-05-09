@@ -4,6 +4,7 @@ import com.felipeagomes.receitas.dtos.IngredientesDto;
 import com.felipeagomes.receitas.dtos.ResponseIngredientesDto;
 import com.felipeagomes.receitas.entities.Ingredientes;
 import com.felipeagomes.receitas.entities.Usuarios;
+import com.felipeagomes.receitas.mappers.IngredientesMapper;
 import com.felipeagomes.receitas.repositories.IngredientesRepository;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;
 import com.felipeagomes.receitas.util.EntityUpdateValidator;

@@ -5,6 +5,7 @@ import com.felipeagomes.receitas.dtos.ResponseReceitasEtapasDto;
 import com.felipeagomes.receitas.entities.Receitas;
 import com.felipeagomes.receitas.entities.ReceitasEtapas;
 import com.felipeagomes.receitas.exceptions.InvalidSequenceException;
+import com.felipeagomes.receitas.mappers.ReceitasEtapasMapper;
 import com.felipeagomes.receitas.repositories.ReceitasEtapasRepository;
 import com.felipeagomes.receitas.repositories.ReceitasRepository;
 import com.felipeagomes.receitas.repositories.UsuariosRepository;

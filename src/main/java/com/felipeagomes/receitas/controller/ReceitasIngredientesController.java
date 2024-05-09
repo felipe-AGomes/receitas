@@ -1,5 +1,6 @@
 package com.felipeagomes.receitas.controller;
 
+import com.felipeagomes.receitas.dtos.ReceitasIngredientesDto;
 import com.felipeagomes.receitas.dtos.ResponseReceitasIngredientesDto;
 import com.felipeagomes.receitas.entities.Ingredientes;
 import com.felipeagomes.receitas.entities.Receitas;
@@ -29,8 +30,10 @@ public class ReceitasIngredientesController {
         return receitasIngredientesService.findAllByReceitaId(receitaId);
     }
 
-//    @PostMapping
-//    private ReceitasIngredientes createReceitaIngrediente(@RequestHeader long receitaId, @RequestHeader long ingredienteId, @RequestBody ReceitasIngredientes receitasIngredientes) {
+    @PostMapping
+    private ResponseReceitasIngredientesDto saveReceitaIngrediente(@RequestBody ReceitasIngredientesDto receitaIngredienteDto) {
+        return receitasIngredientesService.saveReceitaIngrediente(receitaIngredienteDto);
+
 //        Optional<Receitas> receita = receitasRepository.findById(receitaId);
 //        Optional<Ingredientes> ingrediente = ingredientesRepository.findById(ingredienteId);
 //
@@ -46,7 +49,7 @@ public class ReceitasIngredientesController {
 //        }
 //
 //        return null;
-//    }
+    }
 //
 //    @PutMapping
 //    private ReceitasIngredientes updateReceitaIngrediente(@RequestHeader long receitaId, @RequestHeader long ingredienteId, @RequestBody ReceitasIngredientes receitasIngredientes) {
