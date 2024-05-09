@@ -5,7 +5,8 @@ import com.felipeagomes.receitas.entities.primarykeys.ReceitasIngredientesId;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ReceitasIngredientesRepository extends JpaRepository<ReceitasIngredientes, ReceitasIngredientesId> {
-    List<ReceitasIngredientes> findByReceitaId(long receita_id);
+    Optional<List<ReceitasIngredientes>> findByReceitaId(long receita_id);
 }

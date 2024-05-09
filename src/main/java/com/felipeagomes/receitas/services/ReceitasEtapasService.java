@@ -18,13 +18,11 @@ import java.util.Optional;
 public class ReceitasEtapasService {
     private final ReceitasEtapasRepository receitasEtapasRepository;
     private final ReceitasRepository receitasRepository;
-    private final UsuariosRepository usuariosRepository;
     private final ReceitasEtapasMapper receitasEtapasMapper;
 
     public ReceitasEtapasService(ReceitasEtapasRepository receitasEtapasRepository, ReceitasRepository receitasRepository, UsuariosRepository usuariosRepository, ReceitasEtapasMapper receitasEtapasMapper) {
         this.receitasEtapasRepository = receitasEtapasRepository;
         this.receitasRepository = receitasRepository;
-        this.usuariosRepository = usuariosRepository;
         this.receitasEtapasMapper = receitasEtapasMapper;
     }
 
