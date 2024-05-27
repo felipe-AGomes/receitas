@@ -23,6 +23,13 @@ public class ReceitasIngredientes {
 
     private String descricao;
 
+    public ReceitasIngredientes() {}
+
+    public ReceitasIngredientes(long receita, long ingrediente, String descricao) {
+        this.id = new ReceitasIngredientesId(receita, ingrediente);
+        this.descricao = descricao;
+    }
+
     public Receitas getReceita() {
         return receita;
     }

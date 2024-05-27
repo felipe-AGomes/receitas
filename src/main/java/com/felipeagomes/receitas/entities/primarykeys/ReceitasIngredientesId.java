@@ -12,6 +12,13 @@ public class ReceitasIngredientesId implements Serializable {
     @Column(name = "ingrediente_id")
     private long ingredienteId;
 
+    public ReceitasIngredientesId() {}
+
+    public ReceitasIngredientesId(long receitaId, long ingredienteId) {
+        this.receitaId = receitaId;
+        this.ingredienteId = ingredienteId;
+    }
+
     public long getReceitaId() {
         return receitaId;
     }

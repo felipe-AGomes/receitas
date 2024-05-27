@@ -24,22 +24,6 @@ public class ReceitasIngredientesController {
     @PostMapping
     private ResponseReceitasIngredientesDto saveReceitaIngrediente(@RequestBody ReceitasIngredientesDto receitaIngredienteDto) {
         return receitasIngredientesService.saveReceitaIngrediente(receitaIngredienteDto);
-
-//        Optional<Receitas> receita = receitasRepository.findById(receitaId);
-//        Optional<Ingredientes> ingrediente = ingredientesRepository.findById(ingredienteId);
-//
-//        if (receita.isPresent() && ingrediente.isPresent()) {
-//            ReceitasIngredientesId receitasIngredientesId = new ReceitasIngredientesId();
-//            receitasIngredientesId.setIngredienteId(ingredienteId);
-//            receitasIngredientesId.setReceitaId(receitaId);
-//
-//            receitasIngredientes.setId(receitasIngredientesId);
-//            receitasIngredientes.setReceita(receita.get());
-//            receitasIngredientes.setIngrediente(ingrediente.get());
-//            return receitasIngredientesRepository.save(receitasIngredientes);
-//        }
-//
-//        return null;
     }
 //
 //    @PutMapping

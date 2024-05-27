@@ -2,9 +2,14 @@ package com.felipeagomes.receitas.services;
 
 import com.felipeagomes.receitas.dtos.in.ReceitasIngredientesDto;
 import com.felipeagomes.receitas.dtos.out.ResponseReceitasIngredientesDto;
+import com.felipeagomes.receitas.entities.Ingredientes;
+import com.felipeagomes.receitas.entities.Receitas;
 import com.felipeagomes.receitas.entities.ReceitasIngredientes;
+import com.felipeagomes.receitas.exceptions.ReceitaOrIngredienteNotFoundException;
 import com.felipeagomes.receitas.mappers.ReceitasIngredientesMapper;
+import com.felipeagomes.receitas.repositories.IngredientesRepository;
 import com.felipeagomes.receitas.repositories.ReceitasIngredientesRepository;
+import com.felipeagomes.receitas.repositories.ReceitasRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +17,14 @@ import java.util.Optional;
 
 @Service
 public class ReceitasIngredientesService {
+    private final ReceitasRepository receitasRepository;
+    private final IngredientesRepository ingredientesRepository;
     private final ReceitasIngredientesRepository receitasIngredientesRepository;
     private final ReceitasIngredientesMapper receitasIngredientesMapper;
 
-    public ReceitasIngredientesService(ReceitasIngredientesRepository receitasIngredientesRepository, ReceitasIngredientesMapper receitasIngredientesMapper) {
+    public ReceitasIngredientesService(ReceitasRepository receitasRepository, IngredientesRepository ingredientesRepository, ReceitasIngredientesRepository receitasIngredientesRepository, ReceitasIngredientesMapper receitasIngredientesMapper) {
+        this.receitasRepository = receitasRepository;
+        this.ingredientesRepository = ingredientesRepository;
         this.receitasIngredientesRepository = receitasIngredientesRepository;
         this.receitasIngredientesMapper = receitasIngredientesMapper;
     }
@@ -26,7 +35,19 @@ public class ReceitasIngredientesService {
     }
 
     public ResponseReceitasIngredientesDto saveReceitaIngrediente(ReceitasIngredientesDto receitaIngredienteDto) {
+        Optional<Receitas> receitaOptional = receitasRepository.findById(receitaIngredienteDto.receitaId());
+        Optional<Ingredientes> ingredienteOptional = ingredientesRepository.findById(receitaIngredienteDto.ingredienteId());
 
-        return null;
+        if (receitaOptional.isPresent() && ingredienteOptional.isPresent()) {
+            ReceitasIngredientes receitaIngrediente = receitasIngredientesMapper.toReceitasIngredientes(receitaIngredienteDto);
+            receitaIngrediente.setReceita(receitaOptional.get());
+            receitaIngrediente.setIngrediente(ingredienteOptional.get());
+
+            receitasIngredientesRepository.save(receitaIngrediente);
+
+            return receitasIngredientesMapper.toResponseReceitasIngredientesDto(receitaIngrediente);
+        }
+
+        throw new ReceitaOrIngredienteNotFoundException();
     }
 }
